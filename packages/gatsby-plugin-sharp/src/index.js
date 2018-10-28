@@ -586,10 +586,15 @@ async function fluid({ file, args = {}, reporter }) {
     size => size < (fixedDimension === `maxWidth` ? width : height)
   )
 
-  // Add the original image to ensure the largest image possible
-  // is available for small images. Also so we can link to
-  // the original image.
-  filteredSizes.push(fixedDimension === `maxWidth` ? width : height)
+
+  options.excludeOriginal = options.excludeOriginal === true
+
+  if (!options.excludeOriginal) {
+    // Add the original image to ensure the largest image possible
+    // is available for small images. Also so we can link to
+    // the original image.
+    filteredSizes.push(fixedDimension === `maxWidth` ? width : height)
+  }
 
   // Sort sizes for prettiness.
   const sortedSizes = _.sortBy(filteredSizes)

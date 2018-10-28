@@ -78,6 +78,8 @@ can add `srcSetBreakpoints: [ 200, 340, 520, 890 ]` as a parameter. You will als
 `maxWidth` as a breakpoint (which is 800 by default), so you will actually get
 `[ 200, 340, 520, 800, 890 ]` as breakpoints.
 
+By default you will also get the original image in sizes and also breakpoints. You can override this behaviour by setting `excludeOriginal` to `false`
+
 On top of that, `fluid` returns everything else (namely aspectRatio and
 a base64 image to use as a placeholder) you need to implement the "blur up"
 technique popularized by Medium and Facebook (and also available as a Gatsby
@@ -90,6 +92,7 @@ plugin for Markdown content as gatsby-remark-images).
 - `quality` (int, default: 50)
 - `sizeByPixelDensity` (bool, default: false)
 - `srcSetBreakpoints` (array of int, default: [])
+- `excludeOriginal` (bool, default: false)
 
 #### Returns
 

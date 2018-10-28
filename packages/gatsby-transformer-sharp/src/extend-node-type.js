@@ -269,6 +269,10 @@ const fluidNodeType = ({
         defaultValue: [],
         description: `A list of image widths to be generated. Example: [ 200, 340, 520, 890 ]`,
       },
+      excludeOriginal: {
+        type: GraphQLBoolean,
+        defaultValue: false,
+      },
     },
     resolve: (image, fieldArgs, context) => {
       const file = getNodeAndSavePathDependency(image.parent, context.path)
