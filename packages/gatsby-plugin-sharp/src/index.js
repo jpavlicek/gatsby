@@ -582,12 +582,15 @@ async function fluid({ file, args = {}, reporter }) {
       fluidSizes.push(breakpoint)
     })
   }
-  const filteredSizes = fluidSizes.filter(
-    size => size < (fixedDimension === `maxWidth` ? width : height)
-  )
-
-
   options.excludeOriginal = options.excludeOriginal === true
+  const filteredSizes = options.excludeOriginal
+    ? fluidSizes.filter(
+        // allow max size if it matches maxWidth/maxHeight option exactly
+        size => size <= (fixedDimension === `maxWidth` ? width : height)
+    )
+    : fluidSizes.filter(
+        size => size < (fixedDimension === `maxWidth` ? width : height)
+    )
 
   if (!options.excludeOriginal) {
     // Add the original image to ensure the largest image possible
